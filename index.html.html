@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proposta de Apoio Cultural</title>
+  <script>
+    // Função para calcular o valor total
+    function calculateTotal() {
+      let total = 0;
+      let daysInMonth = 26; // Considerando 26 dias no mês
+      let discount = 0;
+
+      // Verifica os horários selecionados e soma os valores
+      document.querySelectorAll('.timeSlot:checked').forEach(function(checkbox) {
+        total += parseFloat(checkbox.value); // Soma os valores selecionados
+      });
+
+      // Multiplica pelo número de dias no mês
+      total *= daysInMonth;
+
+      // Aplica desconto baseado na duração escolhida
+      let duration = document.getElementById('duration').value;
+      if (duration === '3 meses') {
+        discount = 0.05; // 5% de desconto
+      } else if (duration === '6 meses') {
+        discount = 0.10; // 10% de desconto
+      } else if (duration === '12 meses') {
+        discount = 0.15; // 15% de desconto
+      }
+
+      // Aplica o desconto
+      total -= total * discount;
+
+      // Exibe o valor total
+      document.getElementById('total').innerText = 'R$ ' + total.toFixed(2);
+    }
+
+    // Função para abrir a janela de impressão e gerar o PDF
+    function printProposalAsPDF() {
+      window.print(); // Isso abrirá a janela de impressão
+    }
+
+    // Adiciona o evento de cálculo automático ao selecionar os horários
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.timeSlot').forEach(function(checkbox) {
+        checkbox.addEventListener('change', calculateTotal); // Recalcula quando um horário é selecionado
+      });
+
+      document.getElementById('duration').addEventListener('change', calculateTotal); // Recalcula ao mudar a duração
+    });
+  </script>
+</head>
+<body>
+  <h1 style="text-align:center;">Proposta de Apoio Cultural</h1>
+  <p style="text-align:center;">
+    ASSOCIAÇÃO COMUNITÁRIA E CULTURAL CONTORNO DE CAPIM GROSSO<br>
+    Av. Sete de setembro, 75 – Tel: (74) 3651-2856.<br>
+    Capim Grosso – Bahia – CEP: 44695-000<br>
+    CNPJ 02.416.971/0001-42<br>
+    <a href="http://www.contornofm.com.br">www.contornofm.com.br</a> | 
+    <a href="mailto:adm@contornofm.com.br">adm@contornofm.com.br</a>
+  </p>
+  <p style="text-align:center;">
+    A ASCOMCCG, entidade mantenedora da Radio Contorno Fm 104,9, vem mui respeitosamente, apresentar a V. Sª proposta para veiculação de apoio cultural, para que a Comissão de Análise do Setor de Divulgação dessa empresa possa melhor analisar a importância da inserção da mesma em todos os lares nos quais a Radio Contorno Fm 104,9 está presente. Segundo dados das comunidades, fazendas, povoados e distritos de cidades Capim Grosso, Santa Luz, Caém e Caldeirão Grande, chegamos a um público alvo de mais de 35.000 ouvintes.
+  </p>
+
+  <form id="adForm">
+    <h2>Informações da Empresa</h2>
+    <label for="companyName">Nome da Empresa:</label><br>
+    <input type="text" id="companyName" name="companyName" required><br><br>
+
+    <label for="cnpj">CNPJ/CPF:</label><br>
+    <input type="text" id="cnpj" name="cnpj" required><br><br>
+
+    <label for="address">Endereço:</label><br>
+    <input type="text" id="address" name="address" required><br><br>
+
+    <label for="city">Cidade:</label><br>
+    <input type="text" id="city" name="city" required><br><br>
+
+    <label for="phone">Telefone/Whatsapp:</label><br>
+    <input type="text" id="phone" name="phone" required><br><br>
+
+    <label for="email">E-mail:</label><br>
+    <input type="email" id="email" name="email"><br><br>
+
+    <h2>Escolha os horários para inserções gravadas</h2>
+    <input type="checkbox" class="timeSlot" value="3.50"> 05:25 - R$ 3,50 - Acorda meu povo - Edson - Sertanejo raiz<br>
+    <input type="checkbox" class="timeSlot" value="3.50"> 06:25 - R$ 3,50 - Acorda meu povo - Edson - Sertanejo raiz<br>
+    <input type="checkbox" class="timeSlot" value="7.00"> 07:10 - R$ 7,00 - Canal Livre - Rubinho Feitas e Sione Santos - Jornalismo<br>
+    <input type="checkbox" class="timeSlot" value="7.00"> 07:30 - R$ 7,00 - Canal Livre - Rubinho Feitas e Sione Santos - Jornalismo<br>
+    <input type="checkbox" class="timeSlot" value="7.00"> 07:50 - R$ 7,00 - Canal Livre - Rubinho Feitas e Sione Santos - Jornalismo<br>
+    <input type="checkbox" class="timeSlot" value="3.50"> 08:25 - R$ 3,50 - Programa Legal - Rubinho Feitas - Estilo variado<br>
+    <input type="checkbox" class="timeSlot" value="3.50"> 09:25 - R$ 3,50 - Programa Legal - Rubinho Feitas - Estilo variado<br>
+    <input type="checkbox" class="timeSlot" value="3.50"> 10:25 - R$ 3,50 - Programa Legal - Jean Carlos - Estilo variado<br>
+    <input type="checkbox" class="timeSlot" value="3.50"> 11:25 - R$ 3,50 - Programa Legal - Jean Carlos - Estilo variado<br>
+    <input type="checkbox" class="timeSlot" value="8.00"> 12:10 - R$ 8,00 - Notícias da Contorno - Jean Carlos - Jornalismo<br>
+    <input type="checkbox" class="timeSlot" value="8.00"> 12:30 - R$ 8,00 - Notícias da Contorno - Jean Carlos - Jornalismo<br>
+    <input type="checkbox" class="timeSlot" value="8.00"> 13:00 - R$ 8,00 - Notícias da Contorno - Jean Carlos - Jornalismo<br>
+    <input type="checkbox" class="timeSlot" value="8.00"> 13:30 - R$ 8,00 - Notícias da Contorno - Rubinho Feitas - Jornalismo<br>
+    <input type="checkbox" class="timeSlot" value="8.00"> 13:50 - R$ 8,00 - Notícias da Contorno - Rubinho Feitas - Jornalismo<br>
+    <input type="checkbox" class="timeSlot" value="3.50"> 14:25 - R$ 3,50 - Festa do Ouvinte - Lindy Rios - Estilo variado<br>
+    <input type="checkbox" class="timeSlot" value="3.50"> 15:25 - R$ 3,50 - Festa do Ouvinte - Lindy Rios - Estilo variado<br>
+    <input type="checkbox" class="timeSlot" value="3.50"> 16:25 - R$ 3,50 - Festa do Ouvinte - Lindy Rios - Estilo variado<br>
+    <input type="checkbox" class="timeSlot" value="3.50"> 17:25 - R$ 3,50 - No Terreiro da Fazenda - Panka - Forró raiz<br>
+    <input type="checkbox" class="timeSlot" value="3.50"> 18:25 - R$ 3,50 - No Terreiro da Fazenda - Panka - Forró raiz<br>
+    <input type="checkbox" class="timeSlot" value="2.50"> 20:25 - R$ 2,50 - Musical Dentro da Noite - Ed Barreto - Estilo variado<br>
+    <input type="checkbox" class="timeSlot" value="2.50"> 21:25 - R$ 2,50 - Musical Dentro da Noite - Ed Barreto - Estilo variado<br>
+    <input type="checkbox" class="timeSlot" value="2.50"> 22:25 - R$ 2,50 - Musical Dentro da Noite - Ed Barreto - Estilo variado<br><br>
+
+    <h2>Escolha os horários para inserções ao vivo</h2>
+    <input type="checkbox" class="timeSlot" value="4.50"> 05:40 - R$ 4,50 - Acorda meu povo - Edson - Sertanejo raiz<br>
+    <input type="checkbox" class="timeSlot" value="4.50"> 06:40 - R$ 4,50 - Acorda meu povo - Edson - Sertanejo raiz<br>
+    <input type="checkbox" class="timeSlot" value="4.50"> 09:10 - R$ 4,50 - Programa Legal - Rubinho Feitas - Estilo variado<br>
+    <input type="checkbox" class="timeSlot" value="4.50"> 10:10 - R$ 4,50 - Programa Legal - Jean Carlos - Estilo variado<br>
+    <input type="checkbox" class="timeSlot" value="4.50"> 11:10 - R$ 4,50 - Programa Legal - Jean Carlos - Estilo variado<br>
+    <input type="checkbox" class="timeSlot" value="4.50"> 14:10 - R$ 4,50 - Festa do Ouvinte - Lindy Rios - Estilo variado<br>
+    <input type="checkbox" class="timeSlot" value="4.50"> 15:10 - R$ 4,50 - Festa do Ouvinte - Lindy Rios - Estilo variado<br>
+    <input type="checkbox" class="timeSlot" value="4.50"> 16:10 - R$ 4,50 - Festa do Ouvinte - Lindy Rios - Estilo variado<br>
+    <input type="checkbox" class="timeSlot" value="4.50"> 17:10 - R$ 4,50 - No Terreiro da Fazenda - Panka - Forró raiz<br>
+    <input type="checkbox" class="timeSlot" value="4.50"> 18:10 - R$ 4,50 - No Terreiro da Fazenda - Panka - Forró raiz<br><br>
+
+    <label for="duration">Período de Contratação:</label><br>
+    <select id="duration" name="duration">
+      <option value="1 mês">01 Mês</option>
+      <option value="3 meses">03 Meses</option>
+      <option value="6 meses">06 Meses</option>
+      <option value="12 meses">12 Meses</option>
+    </select><br><br>
+
+    <label for="startDate">Data de início da divulgação:</label><br>
+    <input type="date" id="startDate" name="startDate" required><br><br>
+
+    <h3>Valor Total Mensal:</h3>
+    <span id="total">R$ 0,00</span><br><br>
+
+    <label for="observations">Observações:</label><br>
+    <textarea id="observations" name="observations" rows="4" cols="50"></textarea><br><br>
+
+    <button type="button" onclick="printProposalAsPDF()">Salvar Proposta em PDF</button>
+  </form>
+</body>
+</html>
